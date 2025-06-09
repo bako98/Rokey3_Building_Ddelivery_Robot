@@ -248,6 +248,32 @@ ros2 launch mini_project navigation_system.launch.py
 6. 데이터를 압축하고 yolov8_train.ipynb 를 실행해서 yolov8에 파인튜닝하고 모델을 로컬에 다운로드
 ---
 
+## SLAM을 이용한 맵 생성
+
+```bash
+# 예시코드(이름이나 주소는 변경)
+# Terminal 1
+# 터틀봇 undock
+$ ros2 action send_goal /robot8/undock irobot_create_msgs/action/Undock "{}"
+
+$ ros2 launch turtlebot4_navigation slam.launch.py namespace:=/robot8
+
+# Terminal 2
+$ ros2 launch turtlebot4_viz view_robot.launch.py namespace:=/robot8
+
+# Terminal 3
+# 키보드로 터틀봇 조작
+# u i o
+# j k l
+# m , .
+$ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/robot8/cmd_vel
+
+# Terminal 4
+$ cd <map_directory>
+$ ros2 run nav2_map_server map_saver_cli -f “<map_name>" --ros-args -p map_subscribe_transient_local:=true -r __ns:=/robot8
+
+```
+
 
 --------------------------------------------------
 --------------------------------------------------
