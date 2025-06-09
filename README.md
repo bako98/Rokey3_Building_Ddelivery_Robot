@@ -238,11 +238,15 @@ ros2 launch mini_project navigation_system.launch.py
 
 
 
-
-
-
-
-
+---
+## 학습용 이미지 데이터 생성
+1. 이미지 토픽이 받아지는지 확인하고 capture_image_by_amr_rgb_camera.py 를 실행하고 'c'키를 눌러 사진 저장
+2. LabelIMG 로 레이블링 작업
+3. create_date_dirs.py 를 실행해서 test, train, valid 폴더 생성
+4. move_images.py 를 실행해서 이미지를 랜덤하게 이동
+5. move_labels.py 를 실행해서 레이블을 이미지에 맞게 이동
+6. 데이터를 압축하고 yolov8_train.ipynb 를 실행해서 yolov8에 파인튜닝하고 모델을 로컬에 다운로드
+---
 
 
 --------------------------------------------------
