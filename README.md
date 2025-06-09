@@ -262,15 +262,19 @@ $ ros2 launch turtlebot4_navigation slam.launch.py namespace:=/robot8
 $ ros2 launch turtlebot4_viz view_robot.launch.py namespace:=/robot8
 
 # Terminal 3
-# 키보드로 터틀봇 조작
+# 키보드로 터틀봇 조작하면서 맵을 만들기
 # u i o
 # j k l
 # m , .
 $ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/robot8/cmd_vel
 
+# 맵이 다 만들어 졌으면 
 # Terminal 4
 $ cd <map_directory>
 $ ros2 run nav2_map_server map_saver_cli -f “<map_name>" --ros-args -p map_subscribe_transient_local:=true -r __ns:=/robot8
+
+# dock 하기
+$ ros2 action send_goal /robot8/dock irobot_create_msgs/action/Dock "{}"
 
 ```
 
